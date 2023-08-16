@@ -1,0 +1,17 @@
+{
+  "name": "karolis/u3_bank",
+  "description": "U3 BANK",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Bank\\": "app/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Karolis",
+      "email": "karolisdarbinis2@gmail.com"
+    }
+  ],
+  "require": {}
+}
