@@ -4,4 +4,4 @@ use Bank\App;
 
 require_once '../vendor/autoload.php';
 
-App::start();
+echo App::start();
