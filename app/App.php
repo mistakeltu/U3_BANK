@@ -42,5 +42,7 @@ class App
         require ROOT . 'resources/view/' . $path . '.php';
 
         require ROOT . 'resources/view/layout/bottom.php';
+
+        return ob_get_clean();
     }
 }

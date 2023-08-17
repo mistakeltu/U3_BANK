@@ -8,6 +8,8 @@ class BankController
 {
     public function index()
     {
-        return App::view('bank/list');
+        return App::view('bank/list', [
+            'pageTitle' => 'Bank list'
+        ]);
     }
 }
