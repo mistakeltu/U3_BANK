@@ -2,6 +2,8 @@
 
 namespace Bank;
 
+use Bank\Controllers\BankController as BANK;
+
 class App
 {
 
@@ -18,12 +20,27 @@ class App
         $method = $_SERVER['REQUEST_METHOD'];
 
         if ($method == 'GET' && count($uri) == 1 && $uri[0] == 'bank') {
-            return 'sup 2';
+            return (new BANK)->index();
         }
 
 
 
 
         return 'Page not found!';
+    }
+
+    public static function view($path, $data = null)
+    {
+        if ($data) {
+            extract($data);
+        }
+
+        ob_start();
+
+        require ROOT . 'resources/view/layout/top.php';
+
+        require ROOT . 'resources/view/' . $path . '.php';
+
+        require ROOT . 'resources/view/layout/bottom.php';
     }
 }
