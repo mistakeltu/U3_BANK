@@ -25,6 +25,9 @@ class App
         if ($method == 'GET' && count($uri) == 2 && $uri[0] == 'bank' && $uri[1] == 'create') {
             return (new BANK)->create();
         }
+        if ($method == 'POST' && count($uri) == 2 && $uri[0] == 'bank' && $uri[1] == 'store') {
+            return (new BANK)->store();
+        }
 
 
 
@@ -48,5 +51,11 @@ class App
         require ROOT . 'resources/view/layout/bottom.php';
 
         return ob_get_clean();
+    }
+
+    public static function redirect($url)
+    {
+        header('Location:' . URL . $url);
+        return;
     }
 }

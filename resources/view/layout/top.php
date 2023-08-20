@@ -19,13 +19,13 @@
                 <a class="navbar-brand">Bank</a>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= URL . 'bank' ?>">All users</a>
+                        <a class="nav-link" href="<?= URL . 'bank' ?>">All accounts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= URL . 'bank/create' ?>">Create new user</a>
+                        <a class="nav-link" href="<?= URL . 'bank/create' ?>">Create new account</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= URL . 'bank/delete' ?>">Delete user</a>
+                        <a class="nav-link" href="<?= URL . 'bank/delete' ?>">Delete account</a>
                     </li>
                 </ul>
                 <div class="d-flex">
