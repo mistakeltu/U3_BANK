@@ -11974,3 +11974,9 @@ textarea.form-control-lg {
 h1, .h1 {
   color: red;
 }
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}

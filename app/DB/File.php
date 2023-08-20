@@ -2,7 +2,7 @@
 
 namespace Bank\DB;
 
-use App\DB\DataBase as DataBase;
+use App\DB\DataBase;
 
 
 class File implements DataBase
@@ -18,7 +18,7 @@ class File implements DataBase
 
     public function __construct($fileName)
     {
-        $this->file = ROOT . 'data/' . $fileName . 'json';
+        $this->file = __DIR__ . '/../' . 'data/' . $fileName . '.json';
 
         if (!file_exists($this->file)) {
             file_put_contents($this->file, json_encode([]));
@@ -58,5 +58,19 @@ class File implements DataBase
                 return;
             }
         }
+    }
+
+    public function show(int $id): array
+    {
+        foreach ($this->data as $dataLine) {
+            if ($dataLine['id'] == $id) {
+                return $dataLine;
+            }
+        }
+    }
+
+    public function showAll(): array
+    {
+        return $this->data;
     }
 }

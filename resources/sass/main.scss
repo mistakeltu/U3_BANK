@@ -3,3 +3,9 @@
 h1 {
   color: red;
 }
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}

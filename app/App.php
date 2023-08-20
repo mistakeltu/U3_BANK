@@ -22,6 +22,10 @@ class App
         if ($method == 'GET' && count($uri) == 1 && $uri[0] == 'bank') {
             return (new BANK)->index();
         }
+        if ($method == 'GET' && count($uri) == 2 && $uri[0] == 'bank' && $uri[1] == 'create') {
+            return (new BANK)->create();
+        }
+
 
 
 

@@ -9,10 +9,17 @@ class BankController
 {
     public function index()
     {
-        $c = new File();
+        $c = new File('bankas');
 
         return App::view('bank/list', [
             'pageTitle' => 'Bank list'
+        ]);
+    }
+
+    public function create()
+    {
+        return App::view('bank/create', [
+            'pageTitle' => 'Create new user'
         ]);
     }
 }
