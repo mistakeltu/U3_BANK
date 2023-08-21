@@ -9,7 +9,7 @@ $faker = Faker::create();
 
 $list = [];
 
-for ($i = 0; $i < 10; $i++) {
+for ($i = 0; $i < 2; $i++) {
     $list[] = [
         'id' => rand(1000000000, 9999999999),
         'personalCode' => rand(1, 6) . rand(1, 999999) . rand(1, 999) . rand(1, 9),

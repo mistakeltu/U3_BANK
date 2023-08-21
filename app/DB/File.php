@@ -53,11 +53,13 @@ class File implements DataBase
     public function delete(int $id): void
     {
         foreach ($this->data as $key => $dataLine) {
-            if ($dataLine['id'] == 'id') {
+            if ($dataLine['id'] == $id) {
                 unset($this->data[$key]);
                 return;
             }
         }
+        // // echo '<pre>';
+        // print_r($this->data);
     }
 
     public function show(int $id): array
