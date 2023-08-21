@@ -40,6 +40,9 @@ class App
         if ($method == 'POST' && count($uri) == 3 && $uri[0] == 'bank' && $uri[1] == 'update') {
             return (new BANK)->update($uri[2]);
         }
+        if ($method == 'GET' && count($uri) == 3 && $uri[0] == 'bank' && $uri[1] == 'show') {
+            return (new BANK)->show($uri[2]);
+        }
 
 
 

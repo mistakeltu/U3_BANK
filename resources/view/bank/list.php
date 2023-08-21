@@ -24,6 +24,7 @@
                 <td>
                     <a href="<?= URL . 'bank/delete/' . $user['id'] ?>" class="btn btn-outline-light">Delete</a>
                     <a href="<?= URL . 'bank/edit/' . $user['id'] ?>" class="btn btn-outline-light">Edit account</a>
+                    <a href="<?= URL . 'bank/show/' . $user['id'] ?>" class="btn btn-outline-light">Show account info</a>
 
                 </td>
             </tr>

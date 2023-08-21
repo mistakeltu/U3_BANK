@@ -83,4 +83,14 @@ class BankController
         (new File('bankas'))->update($id, $account);
         return App::redirect('bank');
     }
+
+    public function show($id)
+    {
+        $user = (new File('bankas'))->show($id);
+
+        return App::view('bank/show', [
+            'pageTitle' => 'Account details',
+            'user' => $user,
+        ]);
+    }
 }
