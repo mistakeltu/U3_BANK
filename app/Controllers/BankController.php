@@ -28,7 +28,6 @@ class BankController
     public function store()
     {
 
-        // $accounts = json_decode(file_get_contents(__DIR__ . '/../data/bankas.json'), 1);
 
         $account = [
             'id' => uniqid(),
@@ -38,12 +37,6 @@ class BankController
             'accNumber' => 'LT' . rand(1, 999999999999999999),
             'money' => 0
         ];
-
-        // $accounts[] = $account;
-
-        // usort($accounts, function ($a, $b) {
-        //     return strcmp($a['lastName'], $b['lastName']);
-        // });
 
         (new File('bankas'))->create($account);
 
