@@ -58,4 +58,29 @@ class BankController
         (new File('bankas'))->delete($id);
         return App::redirect('bank');
     }
+
+    public function edit($id)
+    {
+        $user = (new File('bankas'))->show($id);
+
+        return App::view('bank/edit', [
+            'pageTitle' => 'Edit user money',
+            'user' => $user,
+        ]);
+    }
+
+    public function update($id)
+    {
+        $account = [
+            'id' => rand(1000000000, 9999999999),
+            'personalCode' => $_POST['personalCode'],
+            'firstName' => $_POST['firstName'],
+            'lastName' => $_POST['lastName'],
+            'accNumber' => 'LT' . rand(1, 999999999999999999),
+            'money' => $_POST['money']
+        ];
+
+        (new File('bankas'))->update($id, $account);
+        return App::redirect('bank');
+    }
 }

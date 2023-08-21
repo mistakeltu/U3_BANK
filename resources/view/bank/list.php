@@ -23,9 +23,8 @@
                 <td><?= $user['money'] ?></td>
                 <td>
                     <a href="<?= URL . 'bank/delete/' . $user['id'] ?>" class="btn btn-outline-light">Delete</a>
-                    <form action="<?= URL ?>edit.php?id=<?= $account['id'] ?>" method="post">
-                        <a class="btn btn-outline-light">Edit money</a>
-                    </form>
+                    <a href="<?= URL . 'bank/edit/' . $user['id'] ?>" class="btn btn-outline-light">Edit account</a>
+
                 </td>
             </tr>
         <?php endforeach ?>

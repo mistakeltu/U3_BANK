@@ -25,7 +25,7 @@
                         <a class="nav-link" href="<?= URL . 'bank/create' ?>">Create new account</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= URL . 'bank/delete' ?>">Delete account</a>
+                        <a class="nav-link" href="<?= URL . 'bank' ?>">Edit account</a>
                     </li>
                 </ul>
                 <div class="d-flex">
