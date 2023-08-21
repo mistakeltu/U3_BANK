@@ -28,8 +28,12 @@ class App
         if ($method == 'POST' && count($uri) == 2 && $uri[0] == 'bank' && $uri[1] == 'store') {
             return (new BANK)->store();
         }
-
-
+        if ($method == 'GET' && count($uri) == 3 && $uri[0] == 'bank' && $uri[1] == 'delete') {
+            return (new BANK)->delete($uri[2]);
+        }
+        if ($method == 'POST' && count($uri) == 3 && $uri[0] == 'bank' && $uri[1] == 'destroy') {
+            return (new BANK)->destroy($uri[2]);
+        }
 
 
 

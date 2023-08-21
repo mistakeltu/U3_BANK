@@ -30,7 +30,7 @@ class BankController
 
 
         $account = [
-            'id' => uniqid(),
+            'id' => rand(1000000000, 9999999999),
             'personalCode' => $_POST['personalCode'],
             'firstName' => $_POST['firstName'],
             'lastName' => $_POST['lastName'],
@@ -40,6 +40,22 @@ class BankController
 
         (new File('bankas'))->create($account);
 
+        return App::redirect('bank');
+    }
+
+    public function delete($id)
+    {
+        $user = (new File('bankas'))->show($id);
+
+        return App::view('bank/delete', [
+            'pageTitle' => 'Confirm delete?',
+            'user' => $user,
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        (new File('bankas'))->delete($id);
         return App::redirect('bank');
     }
 }

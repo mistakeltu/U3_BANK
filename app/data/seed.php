@@ -11,7 +11,7 @@ $list = [];
 
 for ($i = 0; $i < 10; $i++) {
     $list[] = [
-        'id' => uniqid(),
+        'id' => rand(1000000000, 9999999999),
         'personalCode' => rand(1, 6) . rand(1, 999999) . rand(1, 999) . rand(1, 9),
         'firstName' => $faker->word,
         'lastName' => $faker->word,

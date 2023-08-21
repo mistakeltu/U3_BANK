@@ -9,6 +9,7 @@
             <th scope="col">Last Name</th>
             <th scope="col">Personal Code</th>
             <th scope="col">Money</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -20,6 +21,12 @@
                 <td><?= $user['lastName'] ?></td>
                 <td><?= $user['personalCode'] ?></td>
                 <td><?= $user['money'] ?></td>
+                <td>
+                    <a href="<?= URL . 'bank/delete/' . $user['id'] ?>" class="btn btn-outline-light">Delete</a>
+                    <form action="<?= URL ?>edit.php?id=<?= $account['id'] ?>" method="post">
+                        <a class="btn btn-outline-light">Edit money</a>
+                    </form>
+                </td>
             </tr>
         <?php endforeach ?>
     </tbody>
