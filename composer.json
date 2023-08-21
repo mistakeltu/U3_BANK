@@ -14,5 +14,7 @@
       "email": "karolisdarbinis2@gmail.com"
     }
   ],
-  "require": {}
+  "require": {
+    "fzaninotto/faker": "^1.5"
+  }
 }

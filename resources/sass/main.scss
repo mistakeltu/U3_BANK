@@ -1,7 +1,9 @@
 @import "bootstrap/scss/bootstrap";
 
 h1 {
-  color: red;
+  display: flex;
+  justify-content: center;
+  color: grey;
 }
 
 .navbar-nav {

@@ -11972,7 +11972,9 @@ textarea.form-control-lg {
   }
 }
 h1, .h1 {
-  color: red;
+  display: flex;
+  justify-content: center;
+  color: grey;
 }
 
 .navbar-nav {

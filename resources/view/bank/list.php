@@ -1,6 +1,6 @@
 <h1>Accounts list</h1>
 
-<table class="table">
+<table class="table table-dark">
     <thead class="thead-dark">
         <tr>
             <th scope="col">Account id</th>
