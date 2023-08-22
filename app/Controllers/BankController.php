@@ -28,6 +28,25 @@ class BankController
     public function store()
     {
 
+        $errors = false;
+        if (!isset($_POST['firstName']) || strlen($_POST['firstName']) < 3) {
+            // Messages::add('Donut title must be at least 3 characters long', 'danger');
+            $errors = true;
+        }
+        if (!isset($_POST['lastName']) || strlen($_POST['lastName']) < 3) {
+            // Messages::add('Donut description must be at least 3 characters long', 'danger');
+            $errors = true;
+        }
+        if (!isset($_POST['personalCode']) || strlen($_POST['personalCode']) <= 10) {
+            // Messages::add('Donut description must be at least 3 characters long', 'danger');
+            $errors = true;
+        }
+
+        if ($errors) {
+            // flash();
+            return App::redirect('bank/create');
+        }
+
 
         $account = [
             'id' => rand(1000000000, 9999999999),
@@ -47,10 +66,14 @@ class BankController
     {
         $user = (new File('bankas'))->show($id);
 
-        return App::view('bank/delete', [
-            'pageTitle' => 'Confirm delete?',
-            'user' => $user,
-        ]);
+        if ($user['money'] < 1) {
+            return App::view('bank/delete', [
+                'pageTitle' => 'Confirm delete?',
+                'user' => $user,
+            ]);
+        } else {
+            return App::redirect('bank');
+        }
     }
 
     public function destroy($id)
