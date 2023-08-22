@@ -115,15 +115,21 @@ class BankController
     public function minusFromAcc($id)
     {
         $user = (new File('bankas'))->show($id);
+        $moneyLeft = $user['money'] - $_POST['minus'];
 
-        $account = [
-            'id' => rand(1000000000, 9999999999),
-            'personalCode' => $user['personalCode'],
-            'firstName' => $user['firstName'],
-            'lastName' => $user['lastName'],
-            'accNumber' => 'LT' . rand(1, 999999999999999999),
-            'money' => $user['money'] - $_POST['minus'],
-        ];
+        if ($moneyLeft < 0) {
+            return App::redirect('bank');
+        } else {
+            $account = [
+                'id' => rand(1000000000, 9999999999),
+                'personalCode' => $user['personalCode'],
+                'firstName' => $user['firstName'],
+                'lastName' => $user['lastName'],
+                'accNumber' => 'LT' . rand(1, 999999999999999999),
+                'money' => $moneyLeft
+            ];
+        }
+
 
         (new File('bankas'))->update($id, $account);
         return App::redirect('bank');
