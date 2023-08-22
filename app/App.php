@@ -43,6 +43,12 @@ class App
         if ($method == 'GET' && count($uri) == 3 && $uri[0] == 'bank' && $uri[1] == 'show') {
             return (new BANK)->show($uri[2]);
         }
+        if ($method == 'GET' && count($uri) == 3 && $uri[0] == 'bank' && $uri[1] == 'addCard') {
+            return (new BANK)->addCard($uri[2]);
+        }
+        if ($method == 'POST' && count($uri) == 3 && $uri[0] == 'bank' && $uri[1] == 'addToAcc') {
+            return (new BANK)->addToAcc($uri[2]);
+        }
 
 
 

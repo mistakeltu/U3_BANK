@@ -22,8 +22,6 @@
                             <input type="number" class="form-control" name="personalCode" value="<?= $user['personalCode'] ?>">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Money</label>
-                            <input type="number" class="form-control" name="money" value="<?= $user['money'] ?>">
                         </div>
                         <button type="submit" class="btn btn-primary">Edit account</button>
                         <a href="<?= URL . 'bank' ?>" class="btn btn-danger">Cancel</a>

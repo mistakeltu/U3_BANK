@@ -25,6 +25,7 @@
                     <a href="<?= URL . 'bank/delete/' . $user['id'] ?>" class="btn btn-outline-light">Delete</a>
                     <a href="<?= URL . 'bank/edit/' . $user['id'] ?>" class="btn btn-outline-light">Edit account</a>
                     <a href="<?= URL . 'bank/show/' . $user['id'] ?>" class="btn btn-outline-light">Show account info</a>
+                    <a href="<?= URL . 'bank/addCard/' . $user['id'] ?>" class="btn btn-outline-light">Add money</a>
 
                 </td>
             </tr>

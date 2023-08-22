@@ -69,15 +69,56 @@ class BankController
         ]);
     }
 
+    public function addCard($id)
+    {
+        $user = (new File('bankas'))->show($id);
+
+        return App::view('bank/addCard', [
+            'pageTitle' => 'Edit user money',
+            'user' => $user,
+        ]);
+
+
+        // $account = [
+        //     'id' => rand(1000000000, 9999999999),
+        //     'personalCode' => $user['personalCode'],
+        //     'firstName' => $user['firstName'],
+        //     'lastName' => $user['lastName'],
+        //     'accNumber' => 'LT' . rand(1, 999999999999999999),
+        //     'money' => $user['money'] + $_POST['add'],
+        // ];
+
+        // (new File('bankas'))->update($id, $account);
+        // return App::redirect('update');
+    }
+
+    public function addToAcc($id)
+    {
+        $user = (new File('bankas'))->show($id);
+
+        $account = [
+            'id' => rand(1000000000, 9999999999),
+            'personalCode' => $user['personalCode'],
+            'firstName' => $user['firstName'],
+            'lastName' => $user['lastName'],
+            'accNumber' => 'LT' . rand(1, 999999999999999999),
+            'money' => $user['money'] + $_POST['add'],
+        ];
+
+        (new File('bankas'))->update($id, $account);
+        return App::redirect('bank');
+    }
+
     public function update($id)
     {
+
         $account = [
             'id' => rand(1000000000, 9999999999),
             'personalCode' => $_POST['personalCode'],
             'firstName' => $_POST['firstName'],
             'lastName' => $_POST['lastName'],
             'accNumber' => 'LT' . rand(1, 999999999999999999),
-            'money' => $_POST['money']
+            'money' => $_POST['money'],
         ];
 
         (new File('bankas'))->update($id, $account);
