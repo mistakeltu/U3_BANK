@@ -74,22 +74,36 @@ class BankController
         $user = (new File('bankas'))->show($id);
 
         return App::view('bank/addCard', [
-            'pageTitle' => 'Edit user money',
+            'pageTitle' => 'Add money',
             'user' => $user,
         ]);
+    }
 
+    public function minusCard($id)
+    {
+        $user = (new File('bankas'))->show($id);
 
-        // $account = [
-        //     'id' => rand(1000000000, 9999999999),
-        //     'personalCode' => $user['personalCode'],
-        //     'firstName' => $user['firstName'],
-        //     'lastName' => $user['lastName'],
-        //     'accNumber' => 'LT' . rand(1, 999999999999999999),
-        //     'money' => $user['money'] + $_POST['add'],
-        // ];
+        return App::view('bank/minusCard', [
+            'pageTitle' => 'Subtract money',
+            'user' => $user,
+        ]);
+    }
 
-        // (new File('bankas'))->update($id, $account);
-        // return App::redirect('update');
+    public function minusFromAcc($id)
+    {
+        $user = (new File('bankas'))->show($id);
+
+        $account = [
+            'id' => rand(1000000000, 9999999999),
+            'personalCode' => $user['personalCode'],
+            'firstName' => $user['firstName'],
+            'lastName' => $user['lastName'],
+            'accNumber' => 'LT' . rand(1, 999999999999999999),
+            'money' => $user['money'] - $_POST['minus'],
+        ];
+
+        (new File('bankas'))->update($id, $account);
+        return App::redirect('bank');
     }
 
     public function addToAcc($id)

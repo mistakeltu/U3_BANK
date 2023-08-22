@@ -9,7 +9,7 @@
             <th scope="col">Last Name</th>
             <th scope="col">Personal Code</th>
             <th scope="col">Money</th>
-            <th scope="col">Action</th>
+            <th scope="col">Action </th>
         </tr>
     </thead>
     <tbody>
@@ -26,6 +26,7 @@
                     <a href="<?= URL . 'bank/edit/' . $user['id'] ?>" class="btn btn-outline-light">Edit account</a>
                     <a href="<?= URL . 'bank/show/' . $user['id'] ?>" class="btn btn-outline-light">Show account info</a>
                     <a href="<?= URL . 'bank/addCard/' . $user['id'] ?>" class="btn btn-outline-light">Add money</a>
+                    <a href="<?= URL . 'bank/minusCard/' . $user['id'] ?>" class="btn btn-outline-light">Subtract money</a>
 
                 </td>
             </tr>

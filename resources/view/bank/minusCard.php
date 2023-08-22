@@ -5,12 +5,12 @@
         <div class="col-5 ">
             <div class="card mt-5">
                 <div class="card-header">
-                    Add money to account balance
+                    Subtract money from account balance
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="<?= URL . 'bank/addToAcc/' . $user['id'] ?>">
-                        <p class="card-text">You gonna add to balance: <?= $user['money'] ?></p>
-                        <input type="number" class="form-control" name="add">
+                    <form method="POST" action="<?= URL . 'bank/minusFromAcc/' . $user['id'] ?>">
+                        <p class="card-text">You have monye in your balance balance: <?= $user['money'] ?></p>
+                        <input type="number" class="form-control" name="minus">
                         <button type="submit" class="btn btn-success">Yes</button>
                         <a href="<?= URL . 'bank' ?>" class="btn btn-danger">No</a>
                     </form>
