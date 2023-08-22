@@ -31,15 +31,15 @@ class BankController
 
         $errors = false;
         if (!isset($_POST['firstName']) || strlen($_POST['firstName']) < 3) {
-            // Messages::add('Donut title must be at least 3 characters long', 'danger');
+            Messages::add('First name must be at least 3 characters long', 'danger');
             $errors = true;
         }
         if (!isset($_POST['lastName']) || strlen($_POST['lastName']) < 3) {
-            // Messages::add('Donut description must be at least 3 characters long', 'danger');
+            Messages::add('Last name must be at least 3 characters long', 'danger');
             $errors = true;
         }
         if (!isset($_POST['personalCode']) || strlen($_POST['personalCode']) <= 10) {
-            // Messages::add('Donut description must be at least 3 characters long', 'danger');
+            Messages::add('Personal code must be at least 11 numbers long', 'danger');
             $errors = true;
         }
 
@@ -75,6 +75,7 @@ class BankController
                 'user' => $user,
             ]);
         } else {
+            Messages::add('Can not be deleted, account has money', 'danger');
             return App::redirect('bank');
         }
     }
@@ -155,6 +156,9 @@ class BankController
         ];
 
         (new File('bankas'))->update($id, $account);
+
+        Messages::add('Account information updated', 'success');
+
         return App::redirect('bank');
     }
 
