@@ -4,6 +4,7 @@ namespace Bank\Controllers;
 
 use Bank\App;
 use Bank\DB\File;
+use Bank\Messages;
 
 class BankController
 {
@@ -59,6 +60,8 @@ class BankController
 
         (new File('bankas'))->create($account);
 
+        Messages::add('Account created', 'success');
+
         return App::redirect('bank');
     }
 
@@ -79,6 +82,9 @@ class BankController
     public function destroy($id)
     {
         (new File('bankas'))->delete($id);
+
+        Messages::add('Account deleted', 'success');
+
         return App::redirect('bank');
     }
 

@@ -3,6 +3,7 @@
 namespace Bank;
 
 use Bank\Controllers\BankController as BANK;
+use Bank\Messages;
 
 class App
 {
@@ -66,6 +67,8 @@ class App
         if ($data) {
             extract($data);
         }
+
+        $messages = Messages::get();
 
         ob_start();
 

@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <?php require __DIR__ . '/messages.php' ?>
     <div>
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid">
