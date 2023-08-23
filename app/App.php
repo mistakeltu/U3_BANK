@@ -3,6 +3,8 @@
 namespace Bank;
 
 use Bank\Controllers\BankController as BANK;
+use Bank\Controllers\LoginController as LOGIN;
+use Bank\Auth;
 use Bank\Messages;
 
 class App
@@ -19,6 +21,21 @@ class App
         $uri = explode('/', $uri);
         array_shift($uri);
         $method = $_SERVER['REQUEST_METHOD'];
+
+        if ($method == 'GET' && count($uri) == 1 && $uri[0] == 'login') {
+            return (new LOGIN)->showLogin();
+        }
+        if ($method == 'POST' && count($uri) == 1 && $uri[0] == 'login') {
+            return (new LOGIN)->login();
+        }
+        if ($method == 'POST' && count($uri) == 1 && $uri[0] == 'logout') {
+            return (new LOGIN)->logout();
+        }
+
+        //tikrinimas ar useris yra prisilogines
+        if ($uri[0] == 'bank' && !Auth::check()) {
+            return self::redirect('login');
+        }
 
         if ($method == 'GET' && count($uri) == 1 && $uri[0] == 'bank') {
             return (new BANK)->index();
@@ -67,6 +84,8 @@ class App
         if ($data) {
             extract($data);
         }
+
+        $user = Auth::user();
 
         $messages = Messages::get();
 

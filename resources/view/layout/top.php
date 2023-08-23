@@ -14,7 +14,7 @@
 
 <body>
     <?php require __DIR__ . '/messages.php' ?>
-    <div>
+    <?php if (!isset($showNav) || $showNav) : ?>
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand">Bank</a>
@@ -30,7 +30,14 @@
                     </li>
                 </ul>
                 <div class="d-flex">
-                    <a class="nav-link" href="<?= URL . 'login' ?>">Login</a>
+                    <?php if (null === $user) : ?>
+                        <a class="nav-link" href="<?= URL . 'login' ?>">Login</a>
+                    <?php else : ?>
+                        <form action="<?= URL . 'logout' ?>" method="post">
+                            <button type="submit" class="btn btn-link nav-link"><b><?= $user['name'] ?></b>, Logout</button>
+                        </form>
+                    <?php endif ?>
                 </div>
             </div>
         </nav>
+    <?php endif ?>
