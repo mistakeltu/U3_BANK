@@ -23,15 +23,15 @@ $list = json_encode($list);
 
 file_put_contents(__DIR__ . '/bankas.json', $list);
 
-$users = [
+$admins = [
     'id' => 1,
     'name' => 'karolis',
     'email' => 'karolis@gmail.com',
     'password' => md5('132')
 ];
 
-$users = json_encode($users);
+$admins = json_encode($admins);
 
-file_put_contents(__DIR__ . '/users.json', $users);
+file_put_contents(__DIR__ . '/admins.json', $admins);
 
 echo 'Done' . PHP_EOL;

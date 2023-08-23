@@ -85,7 +85,7 @@ class App
             extract($data);
         }
 
-        $user = Auth::user();
+        $admin = Auth::admin();
 
         $messages = Messages::get();
 

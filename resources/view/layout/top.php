@@ -30,11 +30,11 @@
                     </li>
                 </ul>
                 <div class="d-flex">
-                    <?php if (null === $user) : ?>
+                    <?php if (null === $admin) : ?>
                         <a class="nav-link" href="<?= URL . 'login' ?>">Login</a>
                     <?php else : ?>
                         <form action="<?= URL . 'logout' ?>" method="post">
-                            <button type="submit" class="btn btn-link nav-link"><b><?= $user['name'] ?></b>, Logout</button>
+                            <button type="submit" class="btn btn-link nav-link"><b><?= $admin['name'] ?></b>, Logout</button>
                         </form>
                     <?php endif ?>
                 </div>

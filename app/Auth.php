@@ -8,17 +8,17 @@ class Auth
 {
     public static function attempt($email, $password): bool //f-ja kuri bando prijungti vartotoja
     {
-        $users = (new File('users'))->showAll(); // pasiemam visus userius
+        $admins = (new File('admins'))->showAll(); // pasiemam visus userius
 
-        var_dump($users);
+        // var_dump($users);
 
-        foreach ($users as $acc) {
+        foreach ($admins as $admin) {
 
-            var_dump($acc);
+            // var_dump($acc);
 
-            if ($users['email'] == $email && $users['password'] == md5($password)) { //tikrinam ar email ir psw atitinka
+            if ($admins['email'] == $email && $admins['password'] == md5($password)) { //tikrinam ar email ir psw atitinka
                 $_SESSION['logged_in'] = true; //ant sesijos uzdedam logged_in
-                $_SESSION['user'] = $users; //i sesija irasom userio name
+                $_SESSION['admin'] = $admins; //i sesija irasom userio name
                 return true;
             }
         }
@@ -33,10 +33,10 @@ class Auth
         return false;
     }
 
-    public static function user()
+    public static function admin()
     {
-        if (isset($_SESSION['user'])) {
-            return $_SESSION['user'];
+        if (isset($_SESSION['admin'])) {
+            return $_SESSION['admin'];
         }
         return null;
     }
@@ -44,6 +44,6 @@ class Auth
     public static function logout()
     {
         $_SESSION['logged_in'] = false;
-        unset($_SESSION['user']);
+        unset($_SESSION['admin']);
     }
 }
