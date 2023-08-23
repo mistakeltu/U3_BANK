@@ -30,12 +30,12 @@ class BankController
     {
 
         $errors = false;
-        if (!isset($_POST['firstName']) || strlen($_POST['firstName']) < 3) {
-            Messages::add('First name must be at least 3 characters long', 'danger');
+        if (!isset($_POST['firstName']) || strlen($_POST['firstName']) < 1) {
+            Messages::add('First name must be at least 1 characters long', 'danger');
             $errors = true;
         }
-        if (!isset($_POST['lastName']) || strlen($_POST['lastName']) < 3) {
-            Messages::add('Last name must be at least 3 characters long', 'danger');
+        if (!isset($_POST['lastName']) || strlen($_POST['lastName']) < 1) {
+            Messages::add('Last name must be at least 1 characters long', 'danger');
             $errors = true;
         }
         if (!isset($_POST['personalCode']) || strlen($_POST['personalCode']) <= 10) {
@@ -44,7 +44,7 @@ class BankController
         }
 
         if ($errors) {
-            // flash();
+            flash();
             return App::redirect('bank/create');
         }
 
@@ -137,8 +137,10 @@ class BankController
             ];
         }
 
-
         (new File('bankas'))->update($id, $account);
+
+        Messages::add('Money was subtracted from account', 'success');
+
         return App::redirect('bank');
     }
 
@@ -157,7 +159,7 @@ class BankController
 
         (new File('bankas'))->update($id, $account);
 
-        Messages::add('Account information updated', 'success');
+        Messages::add('Money was added to account', 'success');
 
         return App::redirect('bank');
     }

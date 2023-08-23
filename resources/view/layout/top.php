@@ -20,6 +20,9 @@
                 <a class="navbar-brand">Bank</a>
                 <ul class="navbar-nav">
                     <li class="nav-item">
+                        <a class="nav-link" href="<?= URL ?>">Home page</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="<?= URL . 'bank' ?>">All accounts</a>
                     </li>
                     <li class="nav-item">

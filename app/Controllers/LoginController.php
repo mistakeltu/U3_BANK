@@ -30,6 +30,7 @@ class LoginController
     public function logout()
     {
         Auth::logout();
-        return App::redirect('login');
+        Messages::add('You have been logged out', 'success');
+        return App::redirect('');
     }
 }

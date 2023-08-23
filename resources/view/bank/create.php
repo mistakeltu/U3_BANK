@@ -11,15 +11,15 @@
                         <p class="card-text">New bank user will be with zero money</p>
                         <div class="mb-3">
                             <label class="form-label">First Name</label>
-                            <input type="text" class="form-control" name="firstName">
+                            <input type="text" class="form-control" name="firstName" value="<?= old('firstName') ?>">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Last Name</label>
-                            <input type="text" class="form-control" name="lastName">
+                            <input type="text" class="form-control" name="lastName" value="<?= old('lastName') ?>">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Personal code</label>
-                            <input type="number" class="form-control" name="personalCode">
+                            <input type="number" class="form-control" name="personalCode" value="<?= old('personalCode') ?>">
                         </div>
                         <button type="submit" class="btn btn-primary">Create</button>
                         <a href="<?= URL . 'bank' ?>" class="btn btn-danger">Cancel</a>

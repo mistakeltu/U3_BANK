@@ -4,6 +4,7 @@ namespace Bank;
 
 use Bank\Controllers\BankController as BANK;
 use Bank\Controllers\LoginController as LOGIN;
+use Bank\Controllers\HomeController as HOME;
 use Bank\Auth;
 use Bank\Messages;
 
@@ -22,6 +23,14 @@ class App
         array_shift($uri);
         $method = $_SERVER['REQUEST_METHOD'];
 
+        //home page
+
+        if ($method == 'GET' && count($uri) == 1 && $uri[0] == '') {
+            return (new HOME)->index();
+        }
+
+        //Login, logout
+
         if ($method == 'GET' && count($uri) == 1 && $uri[0] == 'login') {
             return (new LOGIN)->showLogin();
         }
@@ -36,6 +45,8 @@ class App
         if ($uri[0] == 'bank' && !Auth::check()) {
             return self::redirect('login');
         }
+
+        //Routes
 
         if ($method == 'GET' && count($uri) == 1 && $uri[0] == 'bank') {
             return (new BANK)->index();
@@ -96,6 +107,8 @@ class App
         require ROOT . 'resources/view/' . $path . '.php';
 
         require ROOT . 'resources/view/layout/bottom.php';
+
+        clearFlash();
 
         return ob_get_clean();
     }

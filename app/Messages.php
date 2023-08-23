@@ -5,7 +5,7 @@ namespace Bank;
 
 class Messages
 {
-
+    //koks tekstas yra
     public static function add($text, $type = 'info')
     {
         if (!isset($_SESSION['messages'])) {
@@ -16,7 +16,7 @@ class Messages
             'type' => $type,
         ];
     }
-
+    //kai gettinam tada messages istrinam
     public static function get()
     {
         if (isset($_SESSION['messages'])) {
