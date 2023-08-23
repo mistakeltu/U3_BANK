@@ -24,10 +24,19 @@ $list = json_encode($list);
 file_put_contents(__DIR__ . '/bankas.json', $list);
 
 $admins = [
-    'id' => 1,
-    'name' => 'karolis',
-    'email' => 'karolis@gmail.com',
-    'password' => md5('132')
+    [
+        'id' => 1,
+        'name' => 'Karolis',
+        'email' => 'karolis@gmail.com',
+        'password' => md5('132')
+    ],
+    [
+        'id' => 2,
+        'name' => 'Petras',
+        'email' => 'petras@gmail.com',
+        'password' => md5('123')
+    ],
+
 ];
 
 $admins = json_encode($admins);

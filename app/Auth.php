@@ -16,9 +16,9 @@ class Auth
 
             // var_dump($acc);
 
-            if ($admins['email'] == $email && $admins['password'] == md5($password)) { //tikrinam ar email ir psw atitinka
+            if ($admin['email'] == $email && $admin['password'] == md5($password)) { //tikrinam ar email ir psw atitinka
                 $_SESSION['logged_in'] = true; //ant sesijos uzdedam logged_in
-                $_SESSION['admin'] = $admins; //i sesija irasom userio name
+                $_SESSION['admin'] = $admin; //i sesija irasom userio name
                 return true;
             }
         }
