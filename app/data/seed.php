@@ -28,13 +28,15 @@ $admins = [
         'id' => 1,
         'name' => 'Karolis',
         'email' => 'karolis@gmail.com',
-        'password' => md5('132')
+        'password' => md5('132'),
+        'role' => 'admin'
     ],
     [
         'id' => 2,
         'name' => 'Petras',
         'email' => 'petras@gmail.com',
-        'password' => md5('123')
+        'password' => md5('123'),
+        'role' => 'user'
     ],
 
 ];

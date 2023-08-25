@@ -29,7 +29,7 @@ class App
             return (new HOME)->index();
         }
 
-        //Login, logout
+        //Login, logout, register
 
         if ($method == 'GET' && count($uri) == 1 && $uri[0] == 'login') {
             return (new LOGIN)->showLogin();
@@ -39,6 +39,12 @@ class App
         }
         if ($method == 'POST' && count($uri) == 1 && $uri[0] == 'logout') {
             return (new LOGIN)->logout();
+        }
+        if ($method == 'GET' && count($uri) == 1 && $uri[0] == 'register') {
+            return (new LOGIN)->showRegister();
+        }
+        if ($method == 'POST' && count($uri) == 1 && $uri[0] == 'register') {
+            return (new LOGIN)->register();
         }
 
         //tikrinimas ar useris yra prisilogines

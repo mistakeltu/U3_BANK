@@ -46,4 +46,17 @@ class Auth
         $_SESSION['logged_in'] = false;
         unset($_SESSION['admin']);
     }
+
+    public static function register($name, $email, $password, $personalCode)
+    {
+        $user = [
+            'name' => $name,
+            'email' => $email,
+            'password' => md5($password),
+            'personalCode' => $personalCode,
+            'role' => 'user'
+        ];
+
+        (new File('admins'))->create($user);
+    }
 }
