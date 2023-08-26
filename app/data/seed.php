@@ -23,6 +23,7 @@ $list = json_encode($list);
 
 file_put_contents(__DIR__ . '/bankas.json', $list);
 
+//roles added
 $admins = [
     [
         'id' => 1,
