@@ -69,6 +69,7 @@ class File implements DataBase
                 return $dataLine;
             }
         }
+        return [];
     }
 
     public function showAll(): array

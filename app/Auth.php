@@ -25,12 +25,16 @@ class Auth
         return false;
     }
 
-    public static function check()
+    public static function check(array $roles, bool $header = false)
     {
-        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
+        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true && in_array($_SESSION['admin']['role'], $roles)) {
             return true;
         }
-        return false;
+        if ($header) {
+            http_response_code(403);
+        } else {
+            return false;
+        }
     }
 
     public static function admin()

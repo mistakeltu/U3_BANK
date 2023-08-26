@@ -22,15 +22,24 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= URL ?>">Home page</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= URL . 'bank' ?>">All accounts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= URL . 'bank/create' ?>">Create new account</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= URL . 'bank' ?>">Edit account</a>
-                    </li>
+                    <?php if (check(['admin', 'user'])) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= URL . 'bank' ?>">All accounts</a>
+                        </li>
+                    <?php endif ?>
+                    <?php if (check(['admin'])) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= URL . 'bank/create' ?>">Create new account</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= URL . 'bank' ?>">Edit account</a>
+                        </li>
+                    <?php endif ?>
+                    <?php if (!check(['admin', 'user'])) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= URL . 'register' ?>">Register</a>
+                        </li>
+                    <?php endif ?>
                 </ul>
                 <div class="d-flex">
                     <?php if (null === $admin) : ?>

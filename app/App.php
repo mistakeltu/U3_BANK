@@ -32,68 +32,68 @@ class App
         //Login, logout, register
 
         if ($method == 'GET' && count($uri) == 1 && $uri[0] == 'login') {
-            return (new LOGIN)->showLogin();
+            return !Auth::check(['admin', 'user'], true) ? (new LOGIN)->showLogin() : self::redirect('');
         }
         if ($method == 'POST' && count($uri) == 1 && $uri[0] == 'login') {
-            return (new LOGIN)->login();
+            return !Auth::check(['admin', 'user'], true) ? (new LOGIN)->login() : self::redirect('');
         }
         if ($method == 'POST' && count($uri) == 1 && $uri[0] == 'logout') {
-            return (new LOGIN)->logout();
+            return Auth::check(['admin', 'user'], true) ? (new LOGIN)->logout() : self::redirect('');
         }
         if ($method == 'GET' && count($uri) == 1 && $uri[0] == 'register') {
-            return (new LOGIN)->showRegister();
+            return !Auth::check(['admin', 'user'], true) ? (new LOGIN)->showRegister() : self::redirect('');
         }
         if ($method == 'POST' && count($uri) == 1 && $uri[0] == 'register') {
-            return (new LOGIN)->register();
+            return !Auth::check(['admin', 'user'], true) ? (new LOGIN)->register() : self::redirect('');
         }
 
         //tikrinimas ar useris yra prisilogines
-        if ($uri[0] == 'bank' && !Auth::check()) {
-            return self::redirect('login');
-        }
+        // if ($uri[0] == 'bank' && !Auth::check()) {
+        //     return self::redirect('login');
+        // }
 
         //Routes
 
         if ($method == 'GET' && count($uri) == 1 && $uri[0] == 'bank') {
-            return (new BANK)->index();
+            return Auth::check(['admin', 'user'], true) ? (new BANK)->index() : self::viewError('403');
         }
         if ($method == 'GET' && count($uri) == 2 && $uri[0] == 'bank' && $uri[1] == 'create') {
-            return (new BANK)->create();
+            return Auth::check(['admin'], true) ? (new BANK)->create() : self::viewError('403');
         }
         if ($method == 'POST' && count($uri) == 2 && $uri[0] == 'bank' && $uri[1] == 'store') {
-            return (new BANK)->store();
+            return Auth::check(['admin'], true) ? (new BANK)->store() : self::viewError('403');
         }
         if ($method == 'GET' && count($uri) == 3 && $uri[0] == 'bank' && $uri[1] == 'delete') {
-            return (new BANK)->delete($uri[2]);
+            return Auth::check(['admin'], true) ? (new BANK)->delete($uri[2]) : self::viewError('403');
         }
         if ($method == 'POST' && count($uri) == 3 && $uri[0] == 'bank' && $uri[1] == 'destroy') {
-            return (new BANK)->destroy($uri[2]);
+            return Auth::check(['admin'], true) ? (new BANK)->destroy($uri[2]) : self::viewError('403');
         }
         if ($method == 'GET' && count($uri) == 3 && $uri[0] == 'bank' && $uri[1] == 'edit') {
-            return (new BANK)->edit($uri[2]);
+            return Auth::check(['admin'], true) ? (new BANK)->edit($uri[2]) : self::viewError('403');
         }
         if ($method == 'POST' && count($uri) == 3 && $uri[0] == 'bank' && $uri[1] == 'update') {
-            return (new BANK)->update($uri[2]);
+            return Auth::check(['admin'], true) ? (new BANK)->update($uri[2]) : self::viewError('403');
         }
         if ($method == 'GET' && count($uri) == 3 && $uri[0] == 'bank' && $uri[1] == 'show') {
-            return (new BANK)->show($uri[2]);
+            return Auth::check(['admin', 'user'], true) ? (new BANK)->show($uri[2]) : self::viewError('403');
         }
         if ($method == 'GET' && count($uri) == 3 && $uri[0] == 'bank' && $uri[1] == 'addCard') {
-            return (new BANK)->addCard($uri[2]);
+            return Auth::check(['admin'], true) ? (new BANK)->addCard($uri[2]) : self::viewError('403');
         }
         if ($method == 'GET' && count($uri) == 3 && $uri[0] == 'bank' && $uri[1] == 'minusCard') {
-            return (new BANK)->minusCard($uri[2]);
+            return Auth::check(['admin'], true) ? (new BANK)->minusCard($uri[2]) : self::viewError('403');
         }
         if ($method == 'POST' && count($uri) == 3 && $uri[0] == 'bank' && $uri[1] == 'addToAcc') {
-            return (new BANK)->addToAcc($uri[2]);
+            return Auth::check(['admin'], true) ? (new BANK)->addToAcc($uri[2]) : self::viewError('403');
         }
         if ($method == 'POST' && count($uri) == 3 && $uri[0] == 'bank' && $uri[1] == 'minusFromAcc') {
-            return (new BANK)->minusFromAcc($uri[2]);
+            return Auth::check(['admin'], true) ? (new BANK)->minusFromAcc($uri[2]) : self::viewError('403');
         }
 
 
-
-        return 'Page not found!';
+        http_response_code(404);
+        return self::viewError('404');
     }
 
     public static function view($path, $data = null)
@@ -113,6 +113,18 @@ class App
         require ROOT . 'resources/view/' . $path . '.php';
 
         require ROOT . 'resources/view/layout/bottom.php';
+
+        clearFlash();
+
+        return ob_get_clean();
+    }
+
+    public static function viewError($path)
+    {
+
+        ob_start();
+
+        require ROOT . 'resources/view/errors/' . $path . '.php';
 
         clearFlash();
 

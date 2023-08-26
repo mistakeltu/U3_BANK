@@ -67,7 +67,19 @@ class BankController
 
     public function delete($id)
     {
+        //tikrinimas integerio ir stringo
+        if (!is_numeric($id) || !is_integer($id + 0)) {
+            http_response_code(404);
+            return App::viewError('404');
+        }
+
         $user = (new File('bankas'))->show($id);
+
+        //tikrinimas kad useris nebutu tuscias
+        if (!$user) {
+            http_response_code(404);
+            return App::viewError('404');
+        }
 
         if ($user['money'] < 1) {
             return App::view('bank/delete', [
@@ -91,7 +103,17 @@ class BankController
 
     public function edit($id)
     {
+        if (!is_numeric($id) || !is_integer($id + 0)) {
+            http_response_code(404);
+            return App::viewError('404');
+        }
+
         $user = (new File('bankas'))->show($id);
+
+        if (!$user) {
+            http_response_code(404);
+            return App::viewError('404');
+        }
 
         return App::view('bank/edit', [
             'pageTitle' => 'Edit user money',
@@ -167,6 +189,25 @@ class BankController
     public function update($id)
     {
 
+        $errors = false;
+        if (!isset($_POST['firstName']) || strlen($_POST['firstName']) < 1) {
+            Messages::add('First name must be at least 1 characters long', 'danger');
+            $errors = true;
+        }
+        if (!isset($_POST['lastName']) || strlen($_POST['lastName']) < 1) {
+            Messages::add('Last name must be at least 1 characters long', 'danger');
+            $errors = true;
+        }
+        if (!isset($_POST['personalCode']) || strlen($_POST['personalCode']) <= 10) {
+            Messages::add('Personal code must be at least 11 numbers long', 'danger');
+            $errors = true;
+        }
+
+        if ($errors) {
+            flash();
+            return App::redirect('bank/create');
+        }
+
         $account = [
             'id' => rand(1000000000, 9999999999),
             'personalCode' => $_POST['personalCode'],
@@ -177,6 +218,9 @@ class BankController
         ];
 
         (new File('bankas'))->update($id, $account);
+
+        Messages::add('Account edited', 'success');
+
         return App::redirect('bank');
     }
 

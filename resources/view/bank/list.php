@@ -22,12 +22,13 @@
                 <td><?= $user['personalCode'] ?></td>
                 <td><?= $user['money'] ?></td>
                 <td>
-                    <a href="<?= URL . 'bank/delete/' . $user['id'] ?>" class="btn btn-outline-light">Delete</a>
-                    <a href="<?= URL . 'bank/edit/' . $user['id'] ?>" class="btn btn-outline-light">Edit account</a>
                     <a href="<?= URL . 'bank/show/' . $user['id'] ?>" class="btn btn-outline-light">Show account info</a>
-                    <a href="<?= URL . 'bank/addCard/' . $user['id'] ?>" class="btn btn-outline-light">Add money</a>
-                    <a href="<?= URL . 'bank/minusCard/' . $user['id'] ?>" class="btn btn-outline-light">Subtract money</a>
-
+                    <?php if (check(['admin'])) : ?>
+                        <a href="<?= URL . 'bank/delete/' . $user['id'] ?>" class="btn btn-outline-light">Delete</a>
+                        <a href="<?= URL . 'bank/edit/' . $user['id'] ?>" class="btn btn-outline-light">Edit account</a>
+                        <a href="<?= URL . 'bank/addCard/' . $user['id'] ?>" class="btn btn-outline-light">Add money</a>
+                        <a href="<?= URL . 'bank/minusCard/' . $user['id'] ?>" class="btn btn-outline-light">Subtract money</a>
+                    <?php endif ?>
                 </td>
             </tr>
         <?php endforeach ?>
