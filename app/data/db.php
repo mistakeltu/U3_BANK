@@ -58,7 +58,7 @@ $admins = [
 
 foreach ($admins as $user) {
     $sql = "
-    INSERT INTO users (name, email, password, role)
+    INSERT INTO user (name, email, password, role)
     VALUES (?, ?, ?, ?) 
     ";
     $stmt = $pdo->prepare($sql);

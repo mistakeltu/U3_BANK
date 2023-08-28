@@ -60,7 +60,7 @@ class BankController
             'money' => 0
         ];
 
-        (new File('bankas'))->create($account);
+        Storage::getStorage('bankas')->create($account);
 
         Messages::add('Account created', 'success');
 
@@ -75,7 +75,7 @@ class BankController
             return App::viewError('404');
         }
 
-        $user = (new File('bankas'))->show($id);
+        $user = Storage::getStorage('bankas')->show($id);
 
         //tikrinimas kad useris nebutu tuscias
         if (!$user) {
@@ -96,7 +96,7 @@ class BankController
 
     public function destroy($id)
     {
-        (new File('bankas'))->delete($id);
+        Storage::getStorage('bankas')->delete($id);
 
         Messages::add('Account deleted', 'success');
 
@@ -110,7 +110,7 @@ class BankController
             return App::viewError('404');
         }
 
-        $user = (new File('bankas'))->show($id);
+        $user = Storage::getStorage('bankas')->show($id);
 
         if (!$user) {
             http_response_code(404);
@@ -125,7 +125,7 @@ class BankController
 
     public function addCard($id)
     {
-        $user = (new File('bankas'))->show($id);
+        $user = Storage::getStorage('bankas')->show($id);
 
         return App::view('bank/addCard', [
             'pageTitle' => 'Add money',
@@ -135,7 +135,7 @@ class BankController
 
     public function minusCard($id)
     {
-        $user = (new File('bankas'))->show($id);
+        $user = Storage::getStorage('bankas')->show($id);
 
         return App::view('bank/minusCard', [
             'pageTitle' => 'Subtract money',
@@ -145,7 +145,7 @@ class BankController
 
     public function minusFromAcc($id)
     {
-        $user = (new File('bankas'))->show($id);
+        $user = Storage::getStorage('bankas')->show($id);
         $moneyLeft = $user['money'] - $_POST['minus'];
 
         if ($moneyLeft < 0) {
@@ -161,7 +161,7 @@ class BankController
             ];
         }
 
-        (new File('bankas'))->update($id, $account);
+        Storage::getStorage('bankas')->update($id, $account);
 
         Messages::add('Money was subtracted from account', 'success');
 
@@ -170,7 +170,7 @@ class BankController
 
     public function addToAcc($id)
     {
-        $user = (new File('bankas'))->show($id);
+        $user = Storage::getStorage('bankas')->show($id);
 
         $account = [
             'id' => rand(1000000000, 9999999999),
@@ -181,7 +181,7 @@ class BankController
             'money' => $user['money'] + $_POST['add'],
         ];
 
-        (new File('bankas'))->update($id, $account);
+        Storage::getStorage('bankas')->update($id, $account);
 
         Messages::add('Money was added to account', 'success');
 
@@ -219,7 +219,7 @@ class BankController
             'money' => $_POST['money'],
         ];
 
-        (new File('bankas'))->update($id, $account);
+        Storage::getStorage('bankas')->update($id, $account);
 
         Messages::add('Account edited', 'success');
 
@@ -228,7 +228,7 @@ class BankController
 
     public function show($id)
     {
-        $user = (new File('bankas'))->show($id);
+        $user = Storage::getStorage('bankas')->show($id);
 
         return App::view('bank/show', [
             'pageTitle' => 'Account details',

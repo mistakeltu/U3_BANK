@@ -38,7 +38,7 @@ class MariaDB implements DataBase
     public function create(array $userData): void
     {
         $sql = "
-            INSERT INTO {$this->table} (personal, firstname, lastname, accnumber, money)
+            INSERT INTO {$this->table} (personalCode, firstName, lastName, accNumber, money)
             VALUES (?, ?, ?, ?, ?) 
         ";
 
@@ -50,7 +50,7 @@ class MariaDB implements DataBase
     {
         $sql = "
             UPDATE {$this->table}
-            SET personal = ?, firstname = ?, lastname = ?, accnumber = ?, money = ?
+            SET personalCode = ?, firstName = ?, lastName = ?, accNumber = ?, money = ?
             WHERE id = ?
         ";
 
@@ -72,7 +72,7 @@ class MariaDB implements DataBase
     public function show(int $userId): array
     {
         $sql = "
-            SELECT personal, firstname, lastname, accnumber, money
+            SELECT personalCode, firstName, lastName, accNumber, money
             FROM {$this->table}
             WHERE id = ?
         ";

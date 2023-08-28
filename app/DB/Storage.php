@@ -9,8 +9,8 @@ use Bank\DB\MariaDB;
 class Storage
 {
 
-    // private static $type = 'MariaDB';
-    private static $type = 'File';
+    private static $type = 'MariaDB';
+    // private static $type = 'File';
 
     public static function getStorage($from)
     {
