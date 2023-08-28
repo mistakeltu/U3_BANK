@@ -3,6 +3,7 @@
 namespace Bank\DB;
 
 use App\DB\DataBase;
+use PDO;
 
 
 class File implements DataBase

@@ -26,11 +26,11 @@ for ($i = 0; $i < 10; $i++) {
         'personalCode' => rand(1, 6) . rand(1, 999999) . rand(1, 999) . rand(1, 9),
         'firstName' => $faker->word,
         'lastName' => $faker->word,
-        'accNumber' => 'LT' . rand(1, 999999999999999999),
+        'accNumber' => rand(1, 999999999999999999),
         'money' => 0
     ];
     $sql = "
-    INSERT INTO bank (personal, firstname, lastname, accnumber, money)
+    INSERT INTO bankas (personalCode, firstName, lastName, accNumber, money)
     VALUES (?, ?, ?, ?, ?) 
     ";
     $stmt = $pdo->prepare($sql);

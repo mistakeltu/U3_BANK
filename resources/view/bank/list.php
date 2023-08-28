@@ -16,7 +16,7 @@
         <?php foreach ($list as $user) : ?>
             <tr>
                 <th scope="row"><?= $user['id'] ?></th>
-                <td><?= $user['accNumber'] ?></td>
+                <td><?= 'LT' . $user['accNumber'] ?></td>
                 <td><?= $user['firstName'] ?></td>
                 <td><?= $user['lastName'] ?></td>
                 <td><?= $user['personalCode'] ?></td>
