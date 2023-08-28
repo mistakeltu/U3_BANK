@@ -4,6 +4,7 @@ namespace Bank\Controllers;
 
 use Bank\App;
 use Bank\DB\File;
+use Bank\DB\Storage;
 use Bank\Messages;
 
 class BankController
@@ -11,7 +12,7 @@ class BankController
     public function index()
     {
         //$c = new File('bankas');
-        $list = (new File('bankas'))->showAll();
+        $list = Storage::getStorage('list')->showAll();
 
         return App::view('bank/list', [
             'pageTitle' => 'Bank list',
