@@ -37,25 +37,48 @@ class MariaDB implements DataBase
 
     public function create(array $userData): void
     {
-        $sql = "
+        if ($this->table == 'bankas') {
+            $sql = "
             INSERT INTO {$this->table} (personalCode, firstName, lastName, accNumber, money)
             VALUES (?, ?, ?, ?, ?) 
         ";
 
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$userData['personalCode'], $userData['firstName'], $userData['lastName'], $userData['accNumber'], $userData['money']]);
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$userData['personalCode'], $userData['firstName'], $userData['lastName'], $userData['accNumber'], $userData['money']]);
+        }
+        if ($this->table == 'user') {
+            $sql = "
+            INSERT INTO {$this->table} (name, email, password, role)
+            VALUES (?, ?, ?, ?) 
+        ";
+
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$userData['name'], $userData['email'], $userData['password'], $userData['role']]);
+        }
     }
 
     public function update(int $userId, array $userData): void
     {
-        $sql = "
+        if ($this->table == 'bankas') {
+            $sql = "
             UPDATE {$this->table}
             SET personalCode = ?, firstName = ?, lastName = ?, accNumber = ?, money = ?
             WHERE id = ?
         ";
 
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$userData['personalCode'], $userData['firstName'], $userData['lastName'], $userData['accNumber'], $userData['money']]);
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$userData['personalCode'], $userData['firstName'], $userData['lastName'], $userData['accNumber'], $userData['money'], $userId]);
+        }
+        if ($this->table == 'user') {
+            $sql = "
+            UPDATE {$this->table}
+            SET name = ?, email = ?, password = ?, role = ?
+            VALUES (?, ?, ?, ?) 
+        ";
+
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$userData['name'], $userData['email'], $userData['password'], $userData['role'], $userId]);
+        }
     }
 
     public function delete(int $userId): void

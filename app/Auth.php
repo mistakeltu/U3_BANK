@@ -3,12 +3,13 @@
 namespace Bank;
 
 use Bank\DB\File;
+use Bank\DB\Storage;
 
 class Auth
 {
     public static function attempt($email, $password): bool //f-ja kuri bando prijungti vartotoja
     {
-        $admins = (new File('admins'))->showAll(); // pasiemam visus userius
+        $admins = Storage::getStorage('user')->showAll(); // pasiemam visus userius
 
         // var_dump($users);
 
@@ -51,16 +52,16 @@ class Auth
         unset($_SESSION['admin']);
     }
 
-    public static function register($name, $email, $password, $personalCode)
+    public static function register($name, $email, $password) //$personalCode
     {
         $user = [
             'name' => $name,
             'email' => $email,
             'password' => md5($password),
-            'personalCode' => $personalCode,
+            // 'personalCode' => $personalCode,
             'role' => 'user'
         ];
 
-        (new File('admins'))->create($user);
+        Storage::getStorage('user')->create($user);
     }
 }

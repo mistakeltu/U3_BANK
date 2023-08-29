@@ -57,10 +57,10 @@ class LoginController
             Messages::add('Passwords must match', 'danger');
             $errors = true;
         }
-        if (!isset($_POST['personalCode']) || strlen($_POST['personalCode']) <= 10) {
-            Messages::add('Personal code must be at least 11 numbers long', 'danger');
-            $errors = true;
-        }
+        // if (!isset($_POST['personalCode']) || strlen($_POST['personalCode']) <= 10) {
+        //     Messages::add('Personal code must be at least 11 numbers long', 'danger');
+        //     $errors = true;
+        // }
         if (!isset($_POST['email']) || strlen($_POST['email']) <= 3 || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             Messages::add('Email must be valid', 'danger');
             $errors = true;
@@ -74,9 +74,9 @@ class LoginController
         $name = $_POST['name'];
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $personalCode = $_POST['personalCode'];
+        // $personalCode = $_POST['personalCode'];
 
-        Auth::register($name, $email, $password, $personalCode);
+        Auth::register($name, $email, $password); //$personalCode
         Messages::add('You have been registered', 'success');
         return App::redirect('login');
     }
