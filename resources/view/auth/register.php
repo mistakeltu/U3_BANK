@@ -24,10 +24,10 @@
                             <label class="form-label">Confirm password</label>
                             <input type="password" class="form-control" name="password2">
                         </div>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label class="form-label">Personal code</label>
                             <input type="number" class="form-control" name="personalCode" value="<?= old('personalCode') ?>">
-                        </div>
+                        </div> -->
                         <button type="submit" class="btn btn-success">Register</button>
                     </form>
                 </div>
