@@ -56,13 +56,13 @@ $admins = [
 
 ];
 
-foreach ($admins as $user) {
+foreach ($admins as $useris) {
     $sql = "
     INSERT INTO user (name, email, password, role)
     VALUES (?, ?, ?, ?) 
     ";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$user['name'], $user['email'], $user['password'], $user['role']]);
+    $stmt->execute([$useris['name'], $useris['email'], $useris['password'], $useris['role']]);
 }
 
 echo 'Done' . PHP_EOL;

@@ -6,7 +6,7 @@
                     Edit account
                 </div>
                 <div class="card-body">
-                    <form action="<?= URL . 'bank/update/' . $user['id'] ?>" method="post">
+                    <form action="<?= URL . 'bank/update/' . $user["id"] ?>" method="post">
                         <h5 class="card-title">Edit user money</h5>
                         <p class="card-text">You can add or subtract money from account.</p>
                         <div class="mb-3">

@@ -95,7 +95,7 @@ class MariaDB implements DataBase
     public function show(int $userId): array
     {
         $sql = "
-            SELECT personalCode, firstName, lastName, accNumber, money
+            SELECT id, personalCode, firstName, lastName, accNumber, money
             FROM {$this->table}
             WHERE id = ?
         ";

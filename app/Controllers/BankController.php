@@ -52,7 +52,7 @@ class BankController
 
 
         $account = [
-            'id' => rand(1000000000, 9999999999),
+            // 'id' => rand(1000000000, 9999999999),
             'personalCode' => $_POST['personalCode'],
             'firstName' => $_POST['firstName'],
             'lastName' => $_POST['lastName'],
